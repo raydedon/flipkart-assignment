@@ -3,3 +3,19 @@ $body-color: blue;
 body {
   color: $body-color;
 }
+
+.table-view-grid {
+	display: grid;
+	grid-template-columns: auto 1fr 1fr 1fr;
+	grid-gap: 10px;
+}
+
+.top-header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.footer {
+	display: flex;
+	justify-content: flex-end;
+}

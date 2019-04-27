@@ -1,5 +1,6 @@
 # dependencies
 node_modules
+.idea
 
 # production
 build
@@ -12,3 +13,7 @@ yarn-error.log
 yarn.lock
 .yarnclean
 .vscode
+.idea/misc.xml
+.idea/modules.xml
+.idea/webpack-starter.iml
+.idea/workspace.xml
