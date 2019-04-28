@@ -9,7 +9,7 @@ fetch('https://flipkart-configuration-table.now.sh/api')
 function drawFullGrid(r) {
 	
 	let fullGrid = document.createElement('div');
-	fullGrid.className = 'full-grid';
+	fullGrid.className = 'container full-grid';
 	fullGrid.appendChild(drawTopHeader());
 
 	fullGrid.appendChild(drawGrid(r));
@@ -41,11 +41,11 @@ function drawFooter() {
 	btn.innerHTML = 'done';
 	
 	btn.addEventListener('click', (e) => {
-		let textinputs = document.querySelectorAll('.checkbox');
-		let empty = Array.from(textinputs).filter.call(textinputs, el => el.checked).forEach(el => {
-			console.info(JSON.parse(el.value));
-		});
+		let JSONArray = [];
+		JSONArray.push(Array.from(document.querySelectorAll('.checkbox')).filter(el => el.checked).map(el => JSON.parse(el.value)));
+		console.info(JSON.stringify(JSONArray, null, 4));
 	});
+	
 	footer.appendChild(btn);
 	return footer;
 }
@@ -54,49 +54,49 @@ function drawGrid({config = []}) {
 	
 	let grid = document.createElement('div');
 	grid.className = 'table-view-grid';
-	getHeader().forEach(el => grid.appendChild(el));
+	getGridHeader().forEach(el => grid.appendChild(el));
 	
 	config.map(obj => {
 		let {label = '', field, selected = false, description = ''} = obj;
 		let {defaultValue = '', type = '', options = []} = field;
 		
 		let checkBox = document.createElement('div');
-		checkBox.className = 'col-1';
+		checkBox.className = 'col-1 cell';
 		checkBox.appendChild(getCheckBox(obj));
 		grid.appendChild(checkBox);
 		
 		let key = document.createElement('div');
-		key.className = 'col-2';
+		key.className = 'col-2 cell';
 		key.innerHTML = label;
 		grid.appendChild(key);
 		
 		let value = document.createElement('div');
-		value.className = 'col-3';
+		value.className = 'col-3 cell';
 		value.appendChild(getElementByType(field));
 		grid.appendChild(value);
 		
 		let descriptionHtml = document.createElement('div');
-		descriptionHtml.className = 'col-4';
+		descriptionHtml.className = 'col-4 cell';
 		descriptionHtml.innerHTML = description;
 		grid.appendChild(descriptionHtml);
 	});
 	return grid;
 }
 
-export function getHeader() {
+export function getGridHeader() {
 	let checkBoxHeader = document.createElement('div');
-	checkBoxHeader.className = 'col-header-1';
+	checkBoxHeader.className = 'col-header-1 cell';
 	
 	let keyHeader = document.createElement('div');
-	keyHeader.className = 'col-header-2';
+	keyHeader.className = 'col-header-2 cell';
 	keyHeader.innerHTML = 'Key';
 	
 	let valueHeader = document.createElement('div');
-	valueHeader.className = 'col-header-3';
+	valueHeader.className = 'col-header-3 cell';
 	valueHeader.innerHTML = 'Value';
 	
 	let descriptionHeader = document.createElement('div');
-	descriptionHeader.className = 'col-header-4';
+	descriptionHeader.className = 'col-header-4 cell';
 	descriptionHeader.innerHTML = 'Description';
 	return [checkBoxHeader, keyHeader, valueHeader, descriptionHeader];
 }

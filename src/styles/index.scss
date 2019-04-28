@@ -1,21 +1,69 @@
 $body-color: blue;
 
 body {
-  color: $body-color;
+	color: $body-color;
 }
 
-.table-view-grid {
-	display: grid;
-	grid-template-columns: auto 1fr 1fr 1fr;
-	grid-gap: 10px;
+.container {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+
+	.table-view-grid {
+		display: grid;
+		grid-template-columns: auto repeat(3, 1fr);
+		grid-gap: 5px;
+		grid-auto-rows: minmax(40px, auto);
+		.cell {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.cell:nth-child(8n+1), .cell:nth-child(8n+2), .cell:nth-child(8n+3), .cell:nth-child(8n+4) {
+			background-color: #ccc;
+		}
+		.cell:nth-child(8n+5), .cell:nth-child(8n+6), .cell:nth-child(8n+7), .cell:nth-child(8n+8) {
+			background-color: #fefefe;
+		}
+	}
+
+	.top-header {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.footer {
+		display: flex;
+		justify-content: flex-end;
+	}
 }
 
-.top-header {
-	display: flex;
-	justify-content: space-between;
+
+@media (min-width: 576px) {
+	.container {
+		max-width: 570px;
+	}
 }
 
-.footer {
-	display: flex;
-	justify-content: flex-end;
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+	.container {
+		max-width: 720px;
+	}
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+	.container {
+		max-width: 960px;
+	}
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+	.container {
+		max-width: 960px;
+	}
 }
