@@ -10,12 +10,26 @@ body {
 	padding-left: 15px;
 	margin-right: auto;
 	margin-left: auto;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-items: stretch;
+	grid-gap: 5px;
+
+	.filter-input {
+		justify-self: start;
+	}
+
+	.filter-input-box {
+		justify-self: end;
+	}
 
 	.table-view-grid {
 		display: grid;
 		grid-template-columns: auto repeat(3, 1fr);
-		grid-gap: 5px;
+		grid-gap: 0px;
 		grid-auto-rows: minmax(40px, auto);
+		grid-column: 1/3;
+		border: 1px solid black;
 		.cell {
 			display: flex;
 			align-items: center;
@@ -34,9 +48,9 @@ body {
 		justify-content: space-between;
 	}
 
-	.footer {
-		display: flex;
-		justify-content: flex-end;
+	.btn {
+		grid-column: 1/3;
+		justify-self: end;
 	}
 }
 

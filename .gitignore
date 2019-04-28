@@ -17,3 +17,5 @@ yarn.lock
 .idea/modules.xml
 .idea/webpack-starter.iml
 .idea/workspace.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml

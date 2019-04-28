@@ -21,8 +21,7 @@ function drawFullGrid(r) {
 }
 
 function drawTopHeader() {
-	let topHeader = document.createElement('div');
-	topHeader.className = 'top-header';
+	let topHeader = document.createDocumentFragment();
 	let input = document.createElement('input');
 	input.className = 'filter-input';
 	let inputCheckBox = document.createElement('input');
@@ -34,8 +33,6 @@ function drawTopHeader() {
 }
 
 function drawFooter() {
-	let footer = document.createElement('div');
-	footer.className = 'footer';
 	let btn = document.createElement('button');
 	btn.className = "btn";
 	btn.innerHTML = 'done';
@@ -46,15 +43,14 @@ function drawFooter() {
 		console.info(JSON.stringify(JSONArray, null, 4));
 	});
 	
-	footer.appendChild(btn);
-	return footer;
+	return btn;
 }
 
 function drawGrid({config = []}) {
 	
 	let grid = document.createElement('div');
 	grid.className = 'table-view-grid';
-	getGridHeader().forEach(el => grid.appendChild(el));
+	grid.appendChild(getGridHeader());
 	
 	config.map(obj => {
 		let {label = '', field, selected = false, description = ''} = obj;
@@ -84,21 +80,26 @@ function drawGrid({config = []}) {
 }
 
 export function getGridHeader() {
+	let gridHeader = document.createDocumentFragment();
 	let checkBoxHeader = document.createElement('div');
 	checkBoxHeader.className = 'col-header-1 cell';
+	gridHeader.appendChild(checkBoxHeader);
 	
 	let keyHeader = document.createElement('div');
 	keyHeader.className = 'col-header-2 cell';
 	keyHeader.innerHTML = 'Key';
+	gridHeader.appendChild(keyHeader);
 	
 	let valueHeader = document.createElement('div');
 	valueHeader.className = 'col-header-3 cell';
 	valueHeader.innerHTML = 'Value';
+	gridHeader.appendChild(valueHeader);
 	
 	let descriptionHeader = document.createElement('div');
 	descriptionHeader.className = 'col-header-4 cell';
 	descriptionHeader.innerHTML = 'Description';
-	return [checkBoxHeader, keyHeader, valueHeader, descriptionHeader];
+	gridHeader.appendChild(descriptionHeader);
+	return gridHeader;
 }
 
 function getCheckBox(obj) {
