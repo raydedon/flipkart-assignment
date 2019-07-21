@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {configureStore} from "./scripts/configure-store";
 import Home from "./scripts/Home";
+import Provider from "./scripts/Provider";
 
 const store = configureStore();
 
+
 ReactDOM.render(
-	<Home store={store} />,
+	<Provider store={store}>
+		<Home />
+	</Provider>,
 	document.getElementById('root')
 );
 

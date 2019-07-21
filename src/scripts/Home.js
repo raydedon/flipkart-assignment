@@ -1,26 +1,24 @@
 import React, {Component} from 'react';
 import {decrement, increment} from "./actions";
+import ReactReduxContext from "./context";
 
 export default class Home extends Component {
     incrementClickHandler() {
-        store.dispatch(increment());
+        this.props.store.dispatch(increment());
     }
 
     decrementClickHandler() {
-        store.dispatch(decrement());
-    }
-
-    componentDidMount() {
-        this.unsubscribeStore = store.subscribe(this.updateStateFromStore);
+        this.props.store.dispatch(decrement());
     }
 
     render() {
+        let {store} = this.props;
         return (
             <div className="outer">
                 <p>
                     Counter: <span>{store.getState()}</span> times
-                    <button onClick={incrementClickHandler}>+</button>
-                    <button onClick={decrementClickHandler}>-</button>
+                    <button onClick={this.incrementClickHandler}>+</button>
+                    <button onClick={this.decrementClickHandler}>-</button>
                 </p>
             </div>
         );
